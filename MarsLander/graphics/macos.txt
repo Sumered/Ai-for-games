@@ -1,0 +1,2 @@
+g++ -I. tutorial02.cpp -o tutorial02 common/shader.cpp -lGLEW  -framework OpenGL -lglfw
+na MacOS nie ma -lGL zamiast tego trzeba użyć -framework OpenGL w makefile
