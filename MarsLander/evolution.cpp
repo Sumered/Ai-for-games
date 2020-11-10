@@ -38,8 +38,8 @@ float Individual::simulate_playthrough(float start_x,float start_y,float speed_x
         }
     }
     if(collision_idx == Constants::flat_idx){
-        if(abs(racket.speed.f) <= 20.0 && abs(racket.speed.s) <= 40 && racket.rotation == 0){ return 0.0; }
-        else { return abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation); }
+        if(abs(racket.speed.f) <= 20.0 && abs(racket.speed.s) <= 40 && racket.rotation == 0){ return 0.0 - 0.02 * racket.fuel; }
+        else { return abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation) - 0.02 * racket.fuel; }
     } else{
         if(collision_idx < Constants::flat_idx){
             pair <float,float> point_of_contact = contact_point(prev.f, prev.s, act.f, act.s, Constants::points[collision_idx-1].f, 
@@ -52,7 +52,7 @@ float Individual::simulate_playthrough(float start_x,float start_y,float speed_x
                 point_of_contact = Constants::points[collision_idx];
                 collision_idx++;
             }
-            return result + abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation);
+            return result + abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation) - 0.02 * racket.fuel;
         } else {
             pair <float,float> point_of_contact = contact_point(prev.f, prev.s, act.f, act.s, Constants::points[collision_idx-1].f,
                 Constants::points[collision_idx-1].s, Constants::points[collision_idx].f, Constants::points[collision_idx].s);
@@ -64,7 +64,7 @@ float Individual::simulate_playthrough(float start_x,float start_y,float speed_x
                 point_of_contact = Constants::points[collision_idx-1];
                 collision_idx--;
             }
-            return result + abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation);
+            return result + abs(racket.speed.f) + abs(racket.speed.s) + abs(racket.rotation) - 0.02 * racket.fuel;
         }
     }
     return 0.0;

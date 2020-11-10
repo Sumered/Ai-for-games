@@ -2,6 +2,7 @@
 #include "evolution.h"
 //g++ -I. main.cpp -o main simulation.cpp evolution.cpp physics.cpp graphics/common/shader.cpp -lGLEW  -framework OpenGL -lglfw
 
+//80-90 symulations per 100ms
 int main(){
     float points[] = {
 		0.0f, 1500.0f, 0.0f,
